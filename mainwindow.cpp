@@ -18,20 +18,20 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_gerar_clicked()
 {
     try {
-        if (conj){
-            delete conj;
-        }
         if (ui->lineEdit_inputGerar->text().isEmpty()){
             throw QString("Valor invalido, precisa ser numero");
         }
         QString texto = ui->lineEdit_inputGerar->text();
         for (int i = 0; i < texto.size(); i++){
             if (texto[i] > '9' || texto[i] < '0'){
-                throw QString("Valor invalido, precisa ser numero");
+                throw QString("Valor invalido, precisa ser numero positivo");
             }
         }
         if (ui->lineEdit_inputGerar->text().toInt() <= 0){
             throw QString("Tamanho invalido, precisa ser um numero maior que 0");
+        }
+        if (conj){
+            delete conj;
         }
         conj = new Pedro::Conjunto(ui->lineEdit_inputGerar->text().toInt());
         ui->textEdit_vetorAleatorio->setText(conj->getConjunto());
@@ -61,11 +61,10 @@ void MainWindow::on_pushButton_buscar_clicked()
                 throw QString("Valor invalido, precisa ser numero");
             }
         }
-        int indice = conj->buscarValor(ui->lineEdit_inputValor->text().toInt());
+        int indice = conj->buscarValorOrdenado(ui->lineEdit_inputValor->text().toInt());
         if (indice == -1){
             ui->textEdit_resultadoBusca->setText("Valor nao existe");
-        }
-        else{
+        }else{
             ui->textEdit_resultadoBusca->setText("Valor existe e esta na posicao " + QString::number(indice));
         }
     } catch (QString &e) {

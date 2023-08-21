@@ -15,6 +15,7 @@ public:
     QString getConjuntoOrdenado() const;
     ~Conjunto();
     int buscarValor(int valor) const;
+    int buscarValorOrdenado (int valor) const;
     void selectionSort();
 };
 }

@@ -5,7 +5,8 @@ namespace Pedro{
 
 Conjunto::Conjunto(int tamanho):
     tamanho(0),
-    array(0)
+    array(0),
+    arraySelectionSort(0)
 {
     if (tamanho <= 0)
     {
@@ -47,7 +48,7 @@ QString Conjunto::getConjunto() const
 QString Conjunto::getConjuntoOrdenado() const
 {
     if (!arraySelectionSort){
-        throw QString("O vetor nao existe");
+        throw QString("O vetor ordenado nao existe");
     }
     QString saida = "";
     for (int i = 0; i < tamanho; i++)
@@ -77,6 +78,19 @@ Conjunto::~Conjunto()
 }
 
 int Conjunto::buscarValor(int valor) const
+{
+    if (!array){
+        throw QString("Array nao criado");
+    }
+    for (int i = 0; i < tamanho; i++){
+        if (array[i] == valor){
+            return i;
+        }
+    }
+    return -1;
+}
+
+int Conjunto::buscarValorOrdenado(int valor) const
 {
     if (!arraySelectionSort){
         throw QString("Array nao criado");
@@ -111,7 +125,7 @@ void Conjunto::selectionSort()
             arraySelectionSort[indice] = arraySelectionSort[min_idc];
             arraySelectionSort[min_idc] = temp;
         }
-    } catch (std::bad_alloc) {
+    } catch (std::bad_alloc &e) {
         throw QString("Nao foi possivel alocar memoria para novo array");
     }
 }
