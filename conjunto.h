@@ -12,6 +12,7 @@ private:
 public:
     Conjunto(int tamanho);
     QString getConjunto() const;
+    QString getConjuntoOrdenado() const;
     ~Conjunto();
     int buscarValor(int valor) const;
     void selectionSort();

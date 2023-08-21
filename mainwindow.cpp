@@ -36,7 +36,7 @@ void MainWindow::on_pushButton_gerar_clicked()
         conj = new Pedro::Conjunto(ui->lineEdit_inputGerar->text().toInt());
         ui->textEdit_vetorAleatorio->setText(conj->getConjunto());
         conj->selectionSort();
-        ui->textEdit_vetorOrdenado->setText(conj->getConjunto());
+        ui->textEdit_vetorOrdenado->setText(conj->getConjuntoOrdenado());
     }catch(QString &erro){
         QMessageBox::critical(this,"Erro", erro);
     }
