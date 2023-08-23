@@ -14,11 +14,12 @@ Conjunto::Conjunto(int tamanho):
     }
     try{
         array = new int[tamanho];
+        arraySelectionSort = new int[tamanho];
         this->tamanho = tamanho;
         srand(time(0));
         for (int i = 0; i < tamanho; i++)
         {
-            array[i] = rand() % 1001;
+            arraySelectionSort[i]  = array[i] = rand() % 1001;
         }
     }
     catch(std::bad_alloc &e){
@@ -73,7 +74,7 @@ Conjunto::~Conjunto()
         delete[] array;
     }
     if (arraySelectionSort){
-        delete [] arraySelectionSort;
+        delete[] arraySelectionSort;
     }
 }
 
@@ -108,25 +109,19 @@ int Conjunto::buscarValorOrdenado(int valor) const
 
 void Conjunto::selectionSort()
 {
-    if (!array){
+    if (!arraySelectionSort){
         throw QString("Array nao criado");
     }
-    try {
-        arraySelectionSort = new int[tamanho];
-        std::memcpy(arraySelectionSort, array, tamanho * sizeof(int));
-        for (int indice = 0; indice < tamanho - 1; indice++){
-            int min_idc = indice;
-            for (int i = indice + 1; i < tamanho; i++){
-                if (arraySelectionSort[i] < arraySelectionSort[min_idc]){
-                    min_idc = i;
-                }
+    for (int indice = 0; indice < tamanho - 1; indice++){
+        int min_idc = indice;
+        for (int i = indice + 1; i < tamanho; i++){
+            if (arraySelectionSort[i] < arraySelectionSort[min_idc]){
+                min_idc = i;
             }
-            int temp = arraySelectionSort[indice];
-            arraySelectionSort[indice] = arraySelectionSort[min_idc];
-            arraySelectionSort[min_idc] = temp;
         }
-    } catch (std::bad_alloc &e) {
-        throw QString("Nao foi possivel alocar memoria para novo array");
+        int temp = arraySelectionSort[indice];
+        arraySelectionSort[indice] = arraySelectionSort[min_idc];
+        arraySelectionSort[min_idc] = temp;
     }
 }
 
