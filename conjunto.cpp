@@ -100,7 +100,7 @@ int Conjunto::buscarValorOrdenado(int valor) const
         if (arraySelectionSort[i] == valor){
             return i;
         }
-        if (arraySelectionSort[i] > valor){
+        if (arraySelectionSort[i + 1] > valor){
             return -1;
         }
     }
