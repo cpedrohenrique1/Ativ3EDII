@@ -39,8 +39,7 @@ QString Conjunto::getConjunto() const
             saida += QString::number(array[i]);
         }
         else{
-            saida += QString::number(array[i]);
-            saida += " | ";
+            saida += QString::number(array[i]) + " | ";
         }
     }
     return saida;
@@ -58,8 +57,7 @@ QString Conjunto::getConjuntoOrdenado() const
             saida += QString::number(arraySelectionSort[i]);
         }
         else{
-            saida += QString::number(arraySelectionSort[i]);
-            saida += " | ";
+            saida += QString::number(arraySelectionSort[i]) + " | ";
         }
     }
     return saida;
